@@ -1,0 +1,28 @@
+{
+  "name": "example-with-unocss",
+  "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "dev": "vinxi dev",
+    "build": "vinxi build",
+    "start": "vinxi start"
+  },
+  "dependencies": {
+    "@iconify-icon/solid": "^2.1.1",
+    "@solidjs/router": "^0.14.1",
+    "@solidjs/start": "^1.0.2",
+    "@unocss/reset": "^0.59.2",
+    "jige-ui": "^0.0.1",
+    "solid-js": "^1.8.17",
+    "unocss": "^0.59.2",
+    "vinxi": "^0.3.12"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^2.21.2",
+    "eslint": "^8.57.0",
+    "eslint-plugin-solid": "^0.14.1",
+    "unplugin-auto-import": "^0.17.6"
+  }
+}
