@@ -2,9 +2,11 @@
 import { defineConfig, presetIcons, presetUno } from 'unocss'
 
 export default defineConfig({
-  shortcuts: [
-    // ...
-  ],
+  shortcuts: {
+    'color-base': 'text-gray-900 dark:text-gray-300',
+    'color-fade': 'text-gray-900/50 dark:text-gray-300/50',
+    'bg-base': 'bg-white dark:bg-dark-100',
+  },
   theme: {
     colors: {
       // ...
