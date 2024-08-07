@@ -5,4 +5,6 @@ import '@unocss/reset/tailwind.css'
 import '@unocss/reset/tailwind-compat.css'
 import 'virtual:uno.css'
 
+import './style/font.css'
+
 mount(() => <StartClient />, document.getElementById('app')!)
