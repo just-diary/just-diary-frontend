@@ -1,16 +1,12 @@
 import { createSignal } from 'solid-js'
-import { Button } from 'jige-ui'
+import GmButton from './GmButton'
 
 export default function Counter() {
   const [count, setCount] = createSignal(0)
   return (
-    <Button
+    <GmButton
       onClick={() => setCount(count() + 1)}
-      variant="primary"
-    >
-      Clicks:
-      {' '}
-      {count()}
-    </Button>
+      label={`Clicks: ${count()}`}
+    />
   )
 }
