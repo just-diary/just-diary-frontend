@@ -1,15 +1,24 @@
 import { JSX } from 'solid-js'
-import { GmButtonColors, GmButtonProps } from './types'
+import { GmButtonColors, GmButtonProps, GmButtonVariants } from './types'
 
-type HandledGmButtonProps = Required<Omit<GmButtonProps, 'variant' | 'label' | 'children'>> & {
+type HandledGmButtonProps = Required<Omit<GmButtonProps, 'label' | 'children'>> & {
   label?: string
   children?: JSX.Element
 }
 
-function NormalButton(props: HandledGmButtonProps) {
+function Button(props: HandledGmButtonProps) {
+  const publicClassed = `rounded-md p-2 transition duration-100 `
+  const variantClasses = createMemo(() => {
+    const classes = {
+      normal: `c-white bg-${props.color} active:translate-y-0.5 focus-visible:outline-offset-2`,
+      ghost: `c-${props.color} rounded p-2 active:translate-y-0.5 hover:bg-gray-100 focus-visible:outline-gray focus-visible:outline-offset-2`,
+      link: `c-${props.color} active:underline hover:underline underline-offset-4 focus-visible:underline focus-visible:outline-none`,
+    }
+    return `${publicClassed} ${classes[props.variant]}`
+  })
   return (
     <button
-      class={`c-reverse bg-${props.color} rounded p-2`}
+      class={variantClasses()}
       disabled={props.disabled}
       onClick={(e) => {
         if (props.loading)
@@ -30,13 +39,10 @@ export default function GmButton(props: GmButtonProps) {
     onClick: (() => {}) as any,
     disabled: false,
     loading: false,
+    variant: 'normal' as GmButtonVariants,
   }, props)
 
   return (
-    <Switch fallback={<NormalButton {...finalProps} />}>
-      <Match when={finalProps.variant === 'normal'}>
-        <NormalButton {...finalProps} />
-      </Match>
-    </Switch>
+    <Button {...finalProps} />
   )
 }
