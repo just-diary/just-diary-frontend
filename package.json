@@ -14,12 +14,12 @@
     "@iconify-icon/solid": "^2.1.1",
     "@solidjs/router": "^0.14.1",
     "@solidjs/start": "^1.0.6",
-    "@unocss/reset": "^0.59.4",
+    "@unocss/reset": "^0.61.9",
     "axios": "^1.7.3",
-    "jige-ui": "^0.0.7",
+    "jige-ui": "^0.1.9",
     "solid-js": "^1.8.20",
-    "solid-uses": "^0.1.5",
-    "unocss": "^0.59.4",
+    "solid-uses": "^0.1.7",
+    "unocss": "^0.61.9",
     "vinxi": "^0.4.1"
   },
   "devDependencies": {

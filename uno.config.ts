@@ -44,20 +44,23 @@ export default defineConfig({
   variants: [
     // 通用变体处理器
     (matcher) => {
-      const regex = /^gm-([\w-]+):/
+      const regex = /^data-([\w-]+)=?([\w]*):/
       const match = matcher.match(regex)
 
-      // 如果没有匹配到 gm-xxx: 前缀，返回原始 matcher
+      // 如果没有匹配到 data-xxx: 前缀，返回原始 matcher
       if (!match)
         return matcher
 
-      // 提取 gm- 后的部分
-      const rest = match[1]
+      // 提取 data- 后的属性名和可选的值部分
+      const attribute = match[1]
+      const value = match[2] ? match[2].trim() : null
 
       // 返回修改后的 matcher 和 selector
       return {
         matcher: matcher.replace(regex, ''),
-        selector: s => `${s}[data-gm-${rest}]`,
+        selector: s => value
+          ? `${s}[data-${attribute}="${value}"]` // 匹配指定属性名和值
+          : `${s}[data-${attribute}]`, // 仅匹配指定属性名
       }
     },
   ],
