@@ -20,7 +20,7 @@ function NavItem(props: { path: string, icon: string, _label: string }) {
 
 export default function Nav() {
   return (
-    <nav class="bg-base fixed left-0 h-full w-60px b-r z-1">
+    <nav class="bg-second fixed left-0 h-full w-60px b-r z-1">
       <ul class="container flex flex-col items-center py-3 text-gray-200 gap-2">
         <NavItem path="/" icon="ri:home-4-line" _label="Home" />
         <NavItem path="/about" icon="ri:quill-pen-line" _label="About" />

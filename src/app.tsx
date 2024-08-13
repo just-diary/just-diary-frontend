@@ -11,7 +11,7 @@ export default function App() {
         <>
           <Nav />
           <GmScroll height="100vh">
-            <div class="ml-60px p-1">
+            <div class="ml-60px p-1 bg-main">
               <Suspense>{props.children}</Suspense>
             </div>
           </GmScroll>

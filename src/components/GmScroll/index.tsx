@@ -5,6 +5,8 @@ export default function GmScroll(props: {
   children: JSX.Element
   height?: string
 }) {
+  console.log(!isServer && document.getAnimations())
+
   return (
     <Scrollbar>
       <Scrollbar.Content height={props.height}>
