@@ -7,7 +7,7 @@ const shortcuts = {
   'c-fade': 'text-gray-9/50 dark:text-gray-3/50',
   'bg-main': 'bg-gray-1 dark:bg-dark-200',
   'bg-second': 'bg-white dark:bg-dark',
-  'bg-third': 'bg-[#eee] dark:bg-[#555]',
+  'bg-third': 'bg-[#e1e1e1] dark:bg-[#555]',
   'bg-hover': 'bg-gray-2 dark:bg-[#7b7b7b]',
   'bg-primary': 'bg-primary dark:bg-primaryDark',
   'bg-secondary': 'bg-secondary dark:bg-secondaryDark',
