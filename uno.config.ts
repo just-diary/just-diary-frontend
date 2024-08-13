@@ -1,11 +1,14 @@
 // uno.config.ts
 import { defineConfig, presetIcons, presetUno } from 'unocss'
 const shortcuts = {
-  'c-main': 'text-gray-900 dark:text-gray-300',
+  'b-c': 'b-gray-3 dark:b-dark-3',
+  'c-main': 'text-gray-9 dark:text-gray-3',
   'c-reverse': 'text-white dark:text-black',
-  'c-fade': 'text-gray-900/50 dark:text-gray-300/50',
+  'c-fade': 'text-gray-9/50 dark:text-gray-3/50',
   'bg-main': 'bg-gray-1 dark:bg-dark-200',
   'bg-second': 'bg-white dark:bg-dark',
+  'bg-third': 'bg-[#eee] dark:bg-[#555]',
+  'bg-hover': 'bg-gray-2 dark:bg-[#7b7b7b]',
   'bg-primary': 'bg-primary dark:bg-primaryDark',
   'bg-secondary': 'bg-secondary dark:bg-secondaryDark',
   'bg-danger': 'bg-danger dark:bg-dangerDark',
@@ -21,15 +24,16 @@ export default defineConfig({
   shortcuts,
   theme: {
     colors: {
-      primary: '#007bff',
-      secondary: '#6c757d',
-      danger: '#dc3545',
-      success: '#28a745',
+      primary: '#375a7f',
+      secondary: '#444c56',
+      danger: '#bd2130',
+      success: '#218838',
       // dark
-      primaryDark: '#375a7f',
-      secondaryDark: '#444c56',
-      dangerDark: '#bd2130',
-      successDark: '#218838',
+      primaryDark: '#007bff',
+      secondaryDark: '#6c757d',
+      dangerDark: '#dc3545',
+      successDark: '#28a745',
+
     },
   },
   rules: [

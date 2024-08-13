@@ -3,7 +3,6 @@ import { StartClient, mount } from '@solidjs/start/client'
 
 import '@unocss/reset/tailwind.css'
 import '@unocss/reset/tailwind-compat.css'
-import 'virtual:uno.css'
 
 import './style/font.css'
 

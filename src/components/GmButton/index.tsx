@@ -11,11 +11,14 @@ function Button(props: HandledGmButtonProps) {
   const variantClasses = createMemo(() => {
     const classes = {
       normal: `c-white bg-${props.color} active:translate-y-0.5 focus-visible:outline-offset-2`,
-      ghost: `c-${props.color} rounded p-2 active:translate-y-0.5 hover:bg-gray-100 focus-visible:outline-gray focus-visible:outline-offset-2`,
+      ghost: `c-${props.color} rounded p-2 active:translate-y-0.5 hover:bg-third focus-visible:outline-gray focus-visible:outline-offset-2`,
       link: `c-${props.color} active:underline hover:underline underline-offset-4 focus-visible:underline focus-visible:outline-none`,
     }
     return `${publicClassed} ${classes[props.variant]}`
   })
+
+  // eslint-disable-next-line solid/reactivity
+  const c = children(() => props.children)
   return (
     <button
       class={variantClasses()}
@@ -26,8 +29,8 @@ function Button(props: HandledGmButtonProps) {
         props.onClick(e)
       }}
     >
-      <Show when={props.children} fallback={props.label}>
-        {props.children}
+      <Show when={c()} fallback={props.label}>
+        {c()}
       </Show>
     </button>
   )
