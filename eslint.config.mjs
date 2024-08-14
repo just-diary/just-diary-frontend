@@ -6,6 +6,7 @@ export default antfu({
     'no-console': 'warn',
     // conflicts with auto-import
     'solid/jsx-no-undef': 'off',
+    'ts/no-unused-expressions': 'off',
     'no-undef': 'off',
     'solid/reactivity': ['warn', {
       // List of function names to consider as reactive functions (allow signals to be safely passed as arguments). In addition, any create* or use* functions are automatically included.

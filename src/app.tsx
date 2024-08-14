@@ -31,7 +31,7 @@ export default function App() {
       root={props => (
         <>
           <Nav />
-          <GmScroll height="100vh">
+          <GmScroll height="100vh" autoHide>
             <RouteWrapper>
               <Suspense fallback={<LoadingPage />}>{props.children}</Suspense>
             </RouteWrapper>
