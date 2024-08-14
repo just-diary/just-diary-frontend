@@ -1,16 +1,12 @@
-.ani-route[data-status="entering"] {
-  animation: route-in 0.5s both;
+.page-enter {
+  animation: page-enter 250ms;
 }
 
-.ani-route[data-status="exiting"] {
-  animation: route-out 0.5s both;
+.page-leave {
+  animation: page-leave 250ms;
 }
 
-.ani-route[data-status="exited"] {
-  opacity: 0;
-}
-
-@keyframes route-in {
+@keyframes page-enter {
   from {
     opacity: 0;
   }
@@ -19,7 +15,8 @@
   }
 }
 
-@keyframes route-out {
+
+@keyframes page-leave {
   from {
     opacity: 1;
   }

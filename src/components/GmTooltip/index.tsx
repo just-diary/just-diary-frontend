@@ -1,4 +1,4 @@
-import { JSX } from 'solid-js'
+import type { JSX } from 'solid-js'
 import { Tooltip } from 'jige-ui'
 import useAppState from '~/states/app-state'
 
