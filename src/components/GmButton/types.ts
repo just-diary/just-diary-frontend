@@ -1,20 +1,17 @@
-import { JSX } from "solid-js";
-import { DOMElement } from "solid-js/jsx-runtime";
+import type { JSX } from 'solid-js'
+import type { DOMElement } from 'solid-js/jsx-runtime'
 
-export type GmButtonVariants = 'link' | 'ghost' | 'normal';
-
-export type GmButtonColors = 'primary' | 'secondary' | 'danger' | 'success';
+export type GmButtonVariants = 'link' | 'ghost' | 'normal'
 
 // label or children is required
 export interface GmButtonProps {
   onClick?: (e: MouseEvent & {
-    currentTarget: HTMLButtonElement;
-    target: DOMElement;
-  }) => void;
-  variant?: GmButtonVariants;
-  color?: GmButtonColors;
-  loading?: boolean;
-  disabled?: boolean;
-  label?: string;
-  children?: JSX.Element;
+    currentTarget: HTMLButtonElement
+    target: DOMElement
+  }) => void
+  variant?: GmButtonVariants
+  loading?: boolean
+  disabled?: boolean
+  label?: string
+  children?: JSX.Element
 };

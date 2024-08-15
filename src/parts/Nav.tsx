@@ -11,8 +11,8 @@ function NavItem(props: { path: string, icon: string, label: string }) {
   return (
     <div>
       <GmTooltip content={props.label} placement="right">
-        <a href={props.path} class={`transition group items-center justify-center flex rounded-lg ${active('bg-primary', 'bg-third')} hover:bg-primary lh-none w-48px h-48px`}>
-          <div class={`flex ${props.icon} w-[25px] h-[25px] ${active('text-white', 'c-primary')} group-hover:text-white`} />
+        <a href={props.path} class={`transition group items-center justify-center flex rounded-lg ${active('bg-theme', 'bg-third')} hover:bg-theme lh-none w-48px h-48px`}>
+          <div class={`flex ${props.icon} w-[25px] h-[25px] ${active('text-white', 'c-theme')} group-hover:text-white`} />
         </a>
       </GmTooltip>
     </div>

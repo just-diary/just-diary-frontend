@@ -1,5 +1,5 @@
-import { JSX } from 'solid-js'
-import { GmButtonColors, GmButtonProps, GmButtonVariants } from './types'
+import type { JSX } from 'solid-js'
+import type { GmButtonProps, GmButtonVariants } from './types'
 
 type HandledGmButtonProps = Required<Omit<GmButtonProps, 'label' | 'children'>> & {
   label?: string
@@ -10,9 +10,9 @@ function Button(props: HandledGmButtonProps) {
   const publicClassed = `rounded-md p-2 transition duration-100 `
   const variantClasses = createMemo(() => {
     const classes = {
-      normal: `c-white bg-${props.color} active:translate-y-0.5 focus-visible:outline-offset-2`,
-      ghost: `c-${props.color} rounded p-2 active:translate-y-0.5 hover:bg-third focus-visible:outline-gray focus-visible:outline-offset-2`,
-      link: `c-${props.color} active:underline hover:underline underline-offset-4 focus-visible:underline focus-visible:outline-none`,
+      normal: `c-white bg-theme active:translate-y-0.5 focus-visible:outline-offset-2`,
+      ghost: `c-theme rounded p-2 active:translate-y-0.5 hover:bg-third focus-visible:outline-gray focus-visible:outline-offset-2`,
+      link: `c-theme active:underline hover:underline underline-offset-4 focus-visible:underline focus-visible:outline-none`,
     }
     return `${publicClassed} ${classes[props.variant]}`
   })
@@ -38,7 +38,6 @@ function Button(props: HandledGmButtonProps) {
 
 export default function GmButton(props: GmButtonProps) {
   const finalProps = mergeProps({
-    color: 'primary' as GmButtonColors,
     onClick: (() => {}) as any,
     disabled: false,
     loading: false,

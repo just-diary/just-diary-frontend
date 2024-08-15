@@ -1,5 +1,6 @@
 // uno.config.ts
 import { defineConfig, presetIcons, presetUno } from 'unocss'
+
 const shortcuts = {
   'b-c': 'b-gray-3 dark:b-dark-3',
   'c-main': 'text-gray-9 dark:text-gray-3',
@@ -9,14 +10,8 @@ const shortcuts = {
   'bg-second': 'bg-white dark:bg-dark',
   'bg-third': 'bg-[#e1e1e1] dark:bg-[#555]',
   'bg-hover': 'bg-gray-2 dark:bg-[#7b7b7b]',
-  'bg-primary': 'bg-primary dark:bg-primaryDark',
-  'bg-secondary': 'bg-secondary dark:bg-secondaryDark',
-  'bg-danger': 'bg-danger dark:bg-dangerDark',
-  'bg-success': 'bg-success dark:bg-successDark',
-  'c-primary': 'text-primary dark:text-primaryDark',
-  'c-secondary': 'text-secondary dark:text-secondaryDark',
-  'c-danger': 'text-danger dark:text-dangerDark',
-  'c-success': 'text-success dark:text-successDark',
+  'bg-theme': 'bg-theme dark:bg-themeDark',
+  'c-theme': 'text-theme dark:text-themeDark',
 }
 
 export default defineConfig({
@@ -24,16 +19,9 @@ export default defineConfig({
   shortcuts,
   theme: {
     colors: {
-      primary: '#375a7f',
-      secondary: '#444c56',
-      danger: '#bd2130',
-      success: '#218838',
+      theme: '#375a7f',
       // dark
-      primaryDark: '#007bff',
-      secondaryDark: '#6c757d',
-      dangerDark: '#dc3545',
-      successDark: '#28a745',
-
+      themeDark: '#007bff',
     },
   },
   rules: [
@@ -49,7 +37,8 @@ export default defineConfig({
   variants: [
     // 通用变体处理器
     (matcher) => {
-      const regex = /^data-([\w-]+)=?([\w]*):/
+      // eslint-disable-next-line regexp/no-super-linear-backtracking
+      const regex = /^data-([\w-]+)=?(\w*):/
       const match = matcher.match(regex)
 
       // 如果没有匹配到 data-xxx: 前缀，返回原始 matcher
