@@ -31,6 +31,7 @@ function RouteWrapper(props: {
   })
 
   return (
+
     <div
       class="ml-60px p-1 transition"
       ref={ref}
@@ -43,6 +44,7 @@ function RouteWrapper(props: {
         {props.children}
       </Show>
     </div>
+
   )
 }
 
