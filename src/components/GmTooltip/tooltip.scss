@@ -1,0 +1,45 @@
+.ani-tips[data-status="opening"] {
+  animation: tips-opening 150ms;
+}
+
+.ani-tips[data-status="closing"] {
+  animation: tips-closing 150ms;
+}
+
+.ani-tips[data-placement="left"] {
+  --translate3D: 8px, 0, 0;
+}
+
+.ani-tips[data-placement="right"] {
+  --translate3D: -8px, 0, 0;
+}
+
+.ani-tips[data-placement="top"] {
+  --translate3D: 0, -8px, 0;
+}
+
+.ani-tips[data-placement="bottom"] {
+  --translate3D: 0, 8px, 0;
+}
+
+@keyframes tips-opening {
+  0% {
+    opacity: 0;
+    transform: translate3d(var(--translate3D));
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0 ,0, 0);
+  }
+}
+
+@keyframes tips-closing {
+  0% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--translate3D));
+  }
+}

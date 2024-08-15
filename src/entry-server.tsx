@@ -8,11 +8,12 @@ export default createHandler(() => (
         <head>
           <meta charset="utf-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1" />
+          <meta name="theme-color" content="" />
           <link rel="icon" href="/favicon.ico" />
           {assets}
         </head>
-        <body class="dark">
-          <div id="app" class="bg-main c-main">{children}</div>
+        <body class="dark bg-body">
+          <div id="app" class="c-text bg-second">{children}</div>
           {scripts}
         </body>
       </html>

@@ -16,7 +16,7 @@
     "@solidjs/start": "^1.0.6",
     "@unocss/reset": "^0.62.1",
     "axios": "^1.7.3",
-    "jige-ui": "^0.1.10",
+    "jige-ui": "^0.1.11",
     "solid-js": "^1.8.20",
     "solid-uses": "^0.1.7",
     "unocss": "^0.62.1",
@@ -26,6 +26,7 @@
     "@antfu/eslint-config": "^2.25.0",
     "eslint": "^8.57.0",
     "eslint-plugin-solid": "^0.14.1",
+    "sass-embedded": "^1.77.8",
     "unplugin-auto-import": "^0.18.2",
     "vite-plugin-font": "^2.1.5"
   }

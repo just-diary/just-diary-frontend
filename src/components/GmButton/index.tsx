@@ -10,9 +10,9 @@ function Button(props: HandledGmButtonProps) {
   const publicClassed = `rounded-md p-2 transition duration-100 `
   const variantClasses = createMemo(() => {
     const classes = {
-      normal: `c-white bg-theme active:translate-y-0.5 focus-visible:outline-offset-2`,
-      ghost: `c-theme rounded p-2 active:translate-y-0.5 hover:bg-third focus-visible:outline-gray focus-visible:outline-offset-2`,
-      link: `c-theme active:underline hover:underline underline-offset-4 focus-visible:underline focus-visible:outline-none`,
+      normal: `c-white bg-hl active:translate-y-0.5 focus-visible:outline-offset-2`,
+      ghost: `c-hl rounded p-2 active:translate-y-0.5 hover:bg-hover focus-visible:outline-gray focus-visible:outline-offset-2`,
+      link: `c-hl active:underline hover:underline underline-offset-4 focus-visible:underline focus-visible:outline-none`,
     }
     return `${publicClassed} ${classes[props.variant]}`
   })

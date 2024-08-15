@@ -2,27 +2,24 @@
 import { defineConfig, presetIcons, presetUno } from 'unocss'
 
 const shortcuts = {
-  'b-c': 'b-gray-3 dark:b-dark-3',
-  'c-main': 'text-gray-9 dark:text-gray-3',
-  'c-reverse': 'text-white dark:text-black',
-  'c-fade': 'text-gray-9/50 dark:text-gray-3/50',
-  'bg-main': 'bg-gray-1 dark:bg-dark-200',
-  'bg-second': 'bg-white dark:bg-dark',
-  'bg-third': 'bg-[#e1e1e1] dark:bg-[#555]',
-  'bg-hover': 'bg-gray-2 dark:bg-[#7b7b7b]',
-  'bg-theme': 'bg-theme dark:bg-themeDark',
-  'c-theme': 'text-theme dark:text-themeDark',
+  'c-text': 'text-[var(--gmc-text)]',
+  'c-text-2': 'text-[var(--gmc-text-2)]',
+  'c-heavy': 'text-[var(--gmc-heavy)]',
+  'bg-body': 'bg-[var(--gmc-body)]',
+  'bg-main': 'bg-[var(--gmc-main)]',
+  'bg-second': 'bg-[var(--gmc-second)]',
+  'bg-third': 'bg-[var(--gmc-third)]',
+  'bg-hover': 'bg-[var(--gmc-hover)]',
+  'bg-hl': 'bg-[var(--gmc-hl)]',
+  'bg-light': 'bg-[var(--gmc-light)]',
+  'c-hl': 'text-[var(--gmc-hl)]',
 }
 
 export default defineConfig({
   safelist: Object.keys(shortcuts),
   shortcuts,
   theme: {
-    colors: {
-      theme: '#375a7f',
-      // dark
-      themeDark: '#007bff',
-    },
+
   },
   rules: [
     // 添加一个规则来重置 input 元素的样式

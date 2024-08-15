@@ -2,6 +2,8 @@ import type { JSX } from 'solid-js'
 import { Tooltip } from 'jige-ui'
 import useAppState from '~/states/app-state'
 
+import './tooltip.scss'
+
 export default function GmTooltip(props: {
   children: JSX.Element
   placement?: 'top' | 'bottom' | 'left' | 'right'
@@ -10,7 +12,7 @@ export default function GmTooltip(props: {
   const [state] = useAppState()
   return (
     <Tooltip
-      class="rounded drop-shadow p-2 bg-white dark:bg-[#111] dark:text-white"
+      class="rounded drop-shadow p-2 bg-white dark:bg-[#111] dark:text-white ani-tips"
       tips={props.content}
       placement={props.placement}
       arrow={
