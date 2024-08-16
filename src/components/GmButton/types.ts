@@ -14,4 +14,5 @@ export interface GmButtonProps {
   disabled?: boolean
   label?: string
   children?: JSX.Element
+  href?: string
 };

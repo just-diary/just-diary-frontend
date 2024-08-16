@@ -12,7 +12,7 @@ function NavItem(props: { path: string, icon: string, label: string }) {
   }
   return (
     <div>
-      <GmTooltip content={props.label} placement="right">
+      <GmTooltip content={props.label} placement="right" openDelay={600}>
         <a href={props.path} class={`transition-all duration-200 group items-center justify-center flex rounded-50% ${active('bg-hl rounded-lg', 'bg-third hover:bg-light hover:rounded-lg')}  lh-none w-48px h-48px`}>
           <div class={`flex ${props.icon} w-[25px] h-[25px] ${active('text-white', 'c-hl')} group-hover:text-white`} />
         </a>
@@ -70,6 +70,10 @@ export default function Nav() {
           </FloatingUiPort.Content>
 
         </FloatingUiPort>
+
+        <GmButton variant="ghost" href="/about">
+          <div class="flex i-ri-information-2-line w-[25px] h-[25px]" />
+        </GmButton>
       </div>
 
     </nav>

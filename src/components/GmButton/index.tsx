@@ -1,9 +1,11 @@
 import type { JSX } from 'solid-js'
+import { redirect } from '@solidjs/router'
 import type { GmButtonProps, GmButtonVariants } from './types'
 
-type HandledGmButtonProps = Required<Omit<GmButtonProps, 'label' | 'children'>> & {
+type HandledGmButtonProps = Required<Omit<GmButtonProps, 'label' | 'children' | 'href'>> & {
   label?: string
   children?: JSX.Element
+  href?: string
 }
 
 function Button(props: HandledGmButtonProps) {
@@ -20,10 +22,12 @@ function Button(props: HandledGmButtonProps) {
   // eslint-disable-next-line solid/reactivity
   const c = children(() => props.children)
   return (
-    <button
+    <Dynamic
+      component={props.href ? 'a' : 'button'}
+      href={props.href}
       class={variantClasses()}
       disabled={props.disabled}
-      onClick={(e) => {
+      onClick={(e: any) => {
         if (props.loading)
           return
         props.onClick(e)
@@ -32,7 +36,7 @@ function Button(props: HandledGmButtonProps) {
       <Show when={c()} fallback={props.label}>
         {c()}
       </Show>
-    </button>
+    </Dynamic>
   )
 }
 
