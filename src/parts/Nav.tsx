@@ -1,7 +1,9 @@
 import { useLocation } from '@solidjs/router'
+import { FloatingUiPort } from 'jige-ui'
 import GmTooltip from '../components/GmTooltip'
 import GmButton from '~/components/GmButton'
 import useAppState from '~/states/app-state'
+import GmSlider from '~/components/GmSlider'
 
 function NavItem(props: { path: string, icon: string, label: string }) {
   const location = useLocation()
@@ -31,6 +33,43 @@ export default function Nav() {
         <GmButton variant="ghost" onClick={() => { actions.setIsDark(!state.isDark) }}>
           <div class="flex i-ri-contrast-2-line w-[25px] h-[25px]" />
         </GmButton>
+
+        <FloatingUiPort placement="right" trigger="click">
+          <FloatingUiPort.Trigger>
+            <GmButton variant="ghost">
+              <div class="flex i-ri-settings-5-fill w-[25px] h-[25px]" />
+            </GmButton>
+          </FloatingUiPort.Trigger>
+          <FloatingUiPort.Content zindex={1} class="rounded drop-shadow p-2 bg-white dark:bg-[#111] dark:text-white m-2 ml-0 ani-tips">
+            <div class="flex flex-col p-2">
+              <div class="mb-1">
+                <span>主题设置</span>
+                (
+                <span>
+                  hue:
+                  {' '}
+                  {state.hue}
+                </span>
+                )
+
+              </div>
+              <div class="w-200px">
+                <GmSlider
+                  max={360}
+                  value={state.hue}
+                  step={5}
+                  onChange={
+                    (v) => {
+                      actions.setHue(v)
+                    }
+                  }
+                />
+              </div>
+            </div>
+            <FloatingUiPort.Arrow class="bg-white dark:bg-[#111] dark:text-white" size={8} />
+          </FloatingUiPort.Content>
+
+        </FloatingUiPort>
       </div>
 
     </nav>

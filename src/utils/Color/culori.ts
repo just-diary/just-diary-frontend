@@ -1,4 +1,5 @@
-/* eslint-disable @typescript-eslint/no-loss-of-precision */
+/* eslint-disable no-cond-assign */
+/* eslint-disable ts/no-loss-of-precision */
 type RGBColor = [number, number, number]
 
 interface LCHColor {
@@ -9,11 +10,12 @@ interface LCHColor {
 
 const normalizeHue = (hue: number) => ((hue = hue % 360) < 0 ? hue + 360 : hue)
 
-function convertLabToLch(lab: { l: number; a: number; b: number }): LCHColor {
+function convertLabToLch(lab: { l: number, a: number, b: number }): LCHColor {
   const { l, a, b } = lab
   const c = Math.sqrt(a * a + b * b)
   let h = 0
-  if (c) h = normalizeHue((Math.atan2(b, a) * 180) / Math.PI)
+  if (c)
+    h = normalizeHue((Math.atan2(b, a) * 180) / Math.PI)
   return { l, c, h }
 }
 
@@ -46,10 +48,10 @@ export function convertRgbToOkLch(rgb: RGBColor): LCHColor {
       if (abs <= 0.04045) {
         return c / 12.92
       }
-      return (Math.sign(c) || 1) * Math.pow((abs + 0.055) / 1.055, 2.4)
+      return (Math.sign(c) || 1) * ((abs + 0.055) / 1.055) ** 2.4
     }
 
-    return rgb.map((c) => fn(c / 255)) as RGBColor
+    return rgb.map(c => fn(c / 255)) as RGBColor
   }
 
   const convertRgbToOkLab = (rgb: RGBColor) => {
@@ -68,12 +70,12 @@ function convertOklchToRgb(oklch: LCHColor): RGBColor {
     const fn = (c: number) => {
       const abs = Math.abs(c)
       if (abs > 0.0031308) {
-        return (Math.sign(c) || 1) * (1.055 * Math.pow(abs, 1 / 2.4) - 0.055)
+        return (Math.sign(c) || 1) * (1.055 * abs ** (1 / 2.4) - 0.055)
       }
       return c * 12.92
     }
 
-    return lrgb.map((c) => fn(c)) as RGBColor
+    return lrgb.map(c => fn(c)) as RGBColor
   }
   function convertOklabToLrgb(okLab: {
     l: number
@@ -81,35 +83,26 @@ function convertOklchToRgb(oklch: LCHColor): RGBColor {
     b: number
   }): RGBColor {
     const { l, a, b } = okLab
-    const L = Math.pow(
-      l * 0.99999999845051981432 +
-        0.39633779217376785678 * a +
-        0.21580375806075880339 * b,
-      3,
-    )
-    const M = Math.pow(
-      l * 1.0000000088817607767 -
-        0.1055613423236563494 * a -
-        0.063854174771705903402 * b,
-      3,
-    )
-    const S = Math.pow(
-      l * 1.0000000546724109177 -
-        0.089484182094965759684 * a -
-        1.2914855378640917399 * b,
-      3,
-    )
+    const L = (l * 0.99999999845051981432
+      + 0.39633779217376785678 * a
+      + 0.21580375806075880339 * b) ** 3
+    const M = (l * 1.0000000088817607767
+      - 0.1055613423236563494 * a
+      - 0.063854174771705903402 * b) ** 3
+    const S = (l * 1.0000000546724109177
+      - 0.089484182094965759684 * a
+      - 1.2914855378640917399 * b) ** 3
 
     const res = {
       r: +4.076741661347994 * L - 3.307711590408193 * M + 0.230969928729428 * S,
       g:
-        -1.2684380040921763 * L +
-        2.6097574006633715 * M -
-        0.3413193963102197 * S,
+        -1.2684380040921763 * L
+        + 2.6097574006633715 * M
+        - 0.3413193963102197 * S,
       b:
-        -0.004196086541837188 * L -
-        0.7034186144594493 * M +
-        1.7076147009309444 * S,
+        -0.004196086541837188 * L
+        - 0.7034186144594493 * M
+        + 1.7076147009309444 * S,
     }
 
     return [res.r, res.g, res.b]
@@ -121,7 +114,7 @@ function convertOklchToRgb(oklch: LCHColor): RGBColor {
   }): RGBColor {
     return convertLrgbToRgb(convertOklabToLrgb(okLab))
   }
-  function convertLchToLab(lch: LCHColor): { l: number; a: number; b: number } {
+  function convertLchToLab(lch: LCHColor): { l: number, a: number, b: number } {
     const { l, c, h } = lch
     const res = {
       l,
@@ -136,19 +129,20 @@ function convertOklchToRgb(oklch: LCHColor): RGBColor {
 export function safeOklchToRgb(oklch: LCHColor): RGBColor {
   let rgb = convertOklchToRgb(oklch)
   const unSafeC = (c: RGBColor) => {
-    return c.some((c) => c < 0 || c > 1)
+    return c.some(c => c < 0 || c > 1)
   }
   if (unSafeC(rgb) && !unSafeC(convertOklchToRgb({ ...oklch, c: 0 }))) {
     let start = 0
     let end = oklch.c
     let goodC = 0
-    const resolution = 0.4 / Math.pow(2, 13)
+    const resolution = 0.4 / 2 ** 13
     while (end - start > resolution) {
       const mid = start + (end - start) * 0.5
       const tmp = convertOklchToRgb({ ...oklch, c: mid })
       if (unSafeC(tmp)) {
         end = mid
-      } else {
+      }
+      else {
         goodC = mid
         start = mid
       }

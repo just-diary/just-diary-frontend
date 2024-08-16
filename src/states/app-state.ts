@@ -1,16 +1,32 @@
-import { createGlobalState, watch } from "solid-uses";
+import { createGlobalState, watch } from 'solid-uses'
+import { setDarkLightMetaThemeColor, setDynamicTheme } from '~/style/theme'
 
-const document = isServer ? null : window.document;
-const darkMode = document?.body.classList.contains("dark");
+const document = isServer ? null : window.document
+const darkMode = document?.body.classList.contains('dark')
+const hue = document?.body.dataset.hue
 
-const appState = createGlobalState(()=>({
+const appState = createGlobalState(() => ({
   isDark: darkMode || false,
-}), {setIsDark(v:boolean){
-  document?.body.classList.toggle('dark',v)
-  this.actions.setState('isDark',v)
-}})
+  hue: Number(hue) || 0,
+}), {
+  setIsDark(v: boolean) {
+    document?.body.classList.toggle('dark', v)
+    this.actions.setState('isDark', v)
+    setDarkLightMetaThemeColor()
+  },
 
-const useAppState = () => {
+  setHue(v: number) {
+    if (document) {
+      document.body.dataset.hue = String(v)
+    }
+
+    this.actions.setState('hue', v)
+    setDynamicTheme()
+  },
+
+})
+
+function useAppState() {
   return appState
 }
 

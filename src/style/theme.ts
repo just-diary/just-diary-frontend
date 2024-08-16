@@ -1,5 +1,8 @@
+import { throttle } from 'radash'
+import { theme } from 'unocss/preset-mini'
 import type { ColorType } from '../utils/Color/Color'
 import { OkLch } from '../utils/Color/Color'
+import useAppState from '~/states/app-state'
 import { getCookie } from '~/utils/cookie'
 import * as SelectorEngine from '~/utils/dom/selector-engine'
 
@@ -49,10 +52,10 @@ const metaThemeColor = {
   dark: '',
 }
 
-let currentTheme = ''
+let currentHue = Number.NaN
 
-function changeThemeColor(color: string) {
-  if (currentTheme === color) {
+function changeThemeColor(hue: number) {
+  if (currentHue === hue) {
     return
   }
 
@@ -65,7 +68,7 @@ function changeThemeColor(color: string) {
   }
   let css = ':root{'
   let cssDark = '.dark{'
-  const lchColor = new OkLch(color as ColorType)
+  const lchColor = new OkLch(hue)
 
   themeVars.forEach((obj) => {
     const value = lchColor.new(obj.l, obj.c, obj.a)
@@ -85,7 +88,7 @@ function changeThemeColor(color: string) {
   })
 
   setDarkLightMetaThemeColor()
-  currentTheme = color
+  currentHue = hue
 
   css += '}\n'
   cssDark += '}\n'
@@ -93,13 +96,16 @@ function changeThemeColor(color: string) {
 }
 
 function getTheme() {
-  const T = document.body.dataset.theme
-  return T || '#e7e1d4'
+  const T = document.body.dataset.hue
+  return Number(T) || 0
 }
 
+const throttleThemeChange = throttle({ interval: 50 }, (theme: number) => {
+  changeThemeColor(theme)
+})
 export function setDynamicTheme() {
   const theme = getTheme()
-  changeThemeColor(theme)
+  throttleThemeChange(theme)
 }
 
 export function setDarkLightMetaThemeColor() {
@@ -124,5 +130,7 @@ export function initDarkLightMode() {
   }
 
   document.body.classList.toggle('dark', dark)
+  const [, actions] = useAppState()
+  actions.setIsDark(dark)
   setDarkLightMetaThemeColor()
 }

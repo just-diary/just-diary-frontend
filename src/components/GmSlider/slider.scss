@@ -1,0 +1,4 @@
+.gmslider-native:focus-visible + .gmslider-track > .gmslider-thumb {
+  outline: 3px solid var(--gmc-hl);
+  outline-offset: 2px;
+}

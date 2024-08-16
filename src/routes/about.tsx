@@ -16,6 +16,7 @@ export default function About() {
           <TextField.Input class="p-1 rounded-md border-black border " />
         </TextField>
         <Switcher name="checked">
+          <Switcher.Native />
           <Switcher.Control class="bg-amber relative w-40px h-20px  rounded-20px cursor-pointer data-focus:outline data-focus:outline-2 data-focus:outline-offset-2 data-focus:outline-blue">
             <Switcher.Thumb class="left-1px absolute bg-black w-20px h-20px rounded-full data-checked:translate-x-[calc(100%-1px)] transition" />
           </Switcher.Control>

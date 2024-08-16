@@ -8,7 +8,7 @@ interface LCHColor {
   h: number
 }
 
-export type ColorType = RGBColor | HashColor
+export type ColorType = RGBColor | HashColor | number
 
 // Hex to RGB conversion
 function hexToRgb(hex: string): RGBColor {
@@ -46,13 +46,27 @@ export class OkLch {
   lch: LCHColor
 
   constructor(color: ColorType) {
+    this.lch = {
+      l: 50,
+      c: 0.08,
+      h: 0,
+    }
     let rgb: RGBColor
     if (typeof color === 'string') {
       rgb = hexToRgb(color)
-    } else {
-      rgb = color
     }
-    this.lch = convertRgbToOkLch(rgb)
+    else if (typeof color === 'number') {
+      this.lch = {
+        l: 50,
+        c: 0.08,
+        h: color,
+      }
+    }
+    else {
+      rgb = color
+      this.lch = convertRgbToOkLch(rgb)
+    }
+
     if (this.lch.c < 0.08) {
       this.lch.c = 0.08
     }
