@@ -6,6 +6,10 @@
   animation: page-leave 250ms;
 }
 
+body {
+  font-family: 'Xiaolai SC', sans-serif;
+}
+
 @keyframes page-enter {
   from {
     opacity: 0;

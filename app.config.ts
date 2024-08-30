@@ -1,7 +1,6 @@
 import { defineConfig } from '@solidjs/start/config'
 import UnoCSS from 'unocss/vite'
 import AutoImport from 'unplugin-auto-import/vite'
-import Font from 'vite-plugin-font'
 
 export default defineConfig({
   vite: {
@@ -13,7 +12,7 @@ export default defineConfig({
       //     componentPrefix: 'Icon',
       //   }),
       // ],
-    }), Font.vite()],
+    })],
   },
   server: {
     preset: 'cloudflare',
