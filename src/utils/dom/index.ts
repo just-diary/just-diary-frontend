@@ -6,3 +6,5 @@ export function reFlow(element: HTMLElement) {
 }
 
 export { EventHandler }
+
+export * as SelectorEngine from './selector-engine'

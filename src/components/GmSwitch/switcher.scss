@@ -1,0 +1,4 @@
+.switch-native:focus-visible + .switch-control {
+  outline: 2px solid var(--gmc-hl);
+  outline-offset: 2px;
+}

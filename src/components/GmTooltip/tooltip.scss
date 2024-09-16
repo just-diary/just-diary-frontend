@@ -1,31 +1,45 @@
-.ani-tips[data-status="opening"] {
-  animation: tips-opening 150ms;
+.anitip {
+  margin: 4px;
+  animation-duration: 150ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ani-tips[data-status="closing"] {
-  animation: tips-closing 150ms;
+.anitip[data-status="opening"] {
+  animation-name: tips-opening;
 }
 
-.ani-tips[data-placement="left"] {
-  --translate3D: 8px, 0, 0;
+.anitip[data-status="closing"] {
+  animation-name: tips-closing;
 }
 
-.ani-tips[data-placement="right"] {
-  --translate3D: -8px, 0, 0;
+.anitip[data-placement^="left"] {
+  margin-right: 0;
+
+  --translate-3d: 6px, 0, 0;
 }
 
-.ani-tips[data-placement="top"] {
-  --translate3D: 0, -8px, 0;
+.anitip[data-placement^="right"] {
+  margin-left: 0;
+
+  --translate-3d: -6px, 0, 0;
 }
 
-.ani-tips[data-placement="bottom"] {
-  --translate3D: 0, 8px, 0;
+.anitip[data-placement^="top"] {
+  margin-bottom: 0;
+
+  --translate-3d: 0, 6px, 0;
+}
+
+.anitip[data-placement^="bottom"] {
+  margin-top: 0;
+
+  --translate-3d: 0, -6px, 0;
 }
 
 @keyframes tips-opening {
   0% {
     opacity: 0;
-    transform: translate3d(var(--translate3D));
+    transform: translate3d(var(--translate-3d));
   }
   100% {
     opacity: 1;
@@ -40,6 +54,6 @@
   }
   100% {
     opacity: 0;
-    transform: translate3d(var(--translate3D));
+    transform: translate3d(var(--translate-3d));
   }
 }

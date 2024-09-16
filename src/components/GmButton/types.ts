@@ -15,4 +15,7 @@ export interface GmButtonProps {
   label?: string
   children?: JSX.Element
   href?: string
+  type?: string
+  download?: boolean
+  class?: string
 };

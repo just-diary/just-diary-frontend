@@ -11,23 +11,28 @@
     "fonts": "node ./scripts/fontconvert.js"
   },
   "dependencies": {
-    "@iconify-json/ri": "^1.1.22",
-    "@solidjs/router": "^0.14.1",
+    "@iconify-json/ri": "^1.2.0",
+    "@solid-primitives/fullscreen": "^1.2.6",
+    "@solid-primitives/resize-observer": "^2.0.26",
+    "@solidjs/meta": "^0.29.4",
+    "@solidjs/router": "^0.14.5",
     "@solidjs/start": "^1.0.6",
-    "@unocss/reset": "^0.62.1",
-    "axios": "^1.7.3",
-    "jige-ui": "^0.3.4",
+    "@unocss/reset": "^0.62.3",
+    "axios": "^1.7.7",
+    "echarts": "^5.5.1",
+    "jige-ui": "^0.12.2",
+    "qs": "^6.13.0",
     "radash": "^12.1.0",
-    "solid-js": "^1.8.20",
-    "solid-uses": "^0.1.7",
-    "unocss": "^0.62.1",
-    "vinxi": "^0.4.1"
+    "solid-js": "^1.8.22",
+    "solid-uses": "0.5.1",
+    "unocss": "^0.62.3",
+    "vinxi": "^0.4.3"
   },
   "devDependencies": {
-    "@antfu/eslint-config": "^2.25.0",
-    "eslint": "^8.57.0",
-    "eslint-plugin-solid": "^0.14.1",
-    "sass-embedded": "^1.77.8",
-    "unplugin-auto-import": "^0.18.2"
+    "@antfu/eslint-config": "^3.6.0",
+    "eslint": "^9.10.0",
+    "eslint-plugin-solid": "^0.14.3",
+    "sass-embedded": "^1.78.0",
+    "unplugin-auto-import": "^0.18.3"
   }
 }

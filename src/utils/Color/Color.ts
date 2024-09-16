@@ -1,14 +1,9 @@
 import { convertRgbToOkLch, safeOklchToRgb } from './culori'
+import type { RGBColor } from './rgb_lrgb'
 
-type RGBColor = [number, number, number]
 type HashColor = `#${string}`
-interface LCHColor {
-  l: number
-  c: number
-  h: number
-}
 
-export type ColorType = RGBColor | HashColor | number
+export type ColorType = RGBColor | HashColor
 
 // Hex to RGB conversion
 function hexToRgb(hex: string): RGBColor {
@@ -29,12 +24,12 @@ function hexToRgb(hex: string): RGBColor {
 
   const result = /([\da-f]{2})([\da-f]{2})([\da-f]{2})$/i.exec(hexString)
   return result
-    ? [
-        Number.parseInt(result[1], 16),
-        Number.parseInt(result[2], 16),
-        Number.parseInt(result[3], 16),
-      ]
-    : [0, 0, 0]
+    ? {
+        r: Number.parseInt(result[1], 16),
+        g: Number.parseInt(result[2], 16),
+        b: Number.parseInt(result[3], 16),
+      }
+    : { r: 0, g: 0, b: 0 }
 }
 
 // RGB to Hex conversion
@@ -42,59 +37,36 @@ function rgbToHex(r: number, g: number, b: number): string {
   return `#${((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1)}`
 }
 
-export class OkLch {
-  lch: LCHColor
+function normalizeRGB(rgb: RGBColor): RGBColor {
+  const [r, g, b] = [rgb.r, rgb.g, rgb.b].map((c) => {
+    const tmp = Math.round(c)
+    return Math.min(Math.max(tmp, 0), 255)
+  })
+  return {
+    r,
+    g,
+    b,
+  }
+}
 
-  constructor(color: ColorType) {
-    this.lch = {
-      l: 50,
-      c: 0.08,
-      h: 0,
-    }
-    let rgb: RGBColor
-    if (typeof color === 'string') {
-      rgb = hexToRgb(color)
-    }
-    else if (typeof color === 'number') {
-      this.lch = {
-        l: 50,
-        c: 0.08,
-        h: color,
-      }
-    }
-    else {
-      rgb = color
-      this.lch = convertRgbToOkLch(rgb)
-    }
+export function oklch2web(l: number, c: number, h: number, a?: number): string {
+  const rgb = safeOklchToRgb({ l: l / 100, c, h })
+  const { r, g, b } = normalizeRGB(rgb)
 
-    if (this.lch.c < 0.08) {
-      this.lch.c = 0.08
-    }
+  if (a) {
+    return `rgba(${r},${g},${b},${a})`
   }
 
-  /**
-   * new Color
-   * @param light 0-100
-   * @param color 0-0.4
-   * @param alpha 0-1
-   * @returns
-   */
-  new(light: number, color?: number, alpha?: number): string {
-    const rgb = safeOklchToRgb({
-      h: this.lch.h,
-      l: Math.min(100, light) / 100,
-      c: color || this.lch.c,
-    })
+  return rgbToHex(r, g, b)
+}
 
-    const [r, g, b] = rgb.map((c) => {
-      const tmp = Math.round(c * 255)
-      return Math.min(Math.max(tmp, 0), 255)
-    })
-
-    if (alpha) {
-      return `rgba(${r},${g},${b},${alpha})`
-    }
-
-    return rgbToHex(r, g, b)
+export function extractHue(color: ColorType): number {
+  let rgb: RGBColor
+  if (typeof color === 'string') {
+    rgb = hexToRgb(color)
   }
+  else {
+    rgb = color
+  }
+  return convertRgbToOkLch(rgb).h
 }

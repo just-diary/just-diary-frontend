@@ -1,9 +1,9 @@
 import { useLocation } from '@solidjs/router'
 import { FloatingUiPort } from 'jige-ui'
-import GmTooltip from '../components/GmTooltip'
 import GmButton from '~/components/GmButton'
-import useAppState from '~/states/app-state'
 import GmSlider from '~/components/GmSlider'
+import { useThemeState } from '~/states/theme-state'
+import GmTooltip from '../components/GmTooltip'
 
 function NavItem(props: { path: string, icon: string, label: string }) {
   const location = useLocation()
@@ -13,7 +13,7 @@ function NavItem(props: { path: string, icon: string, label: string }) {
   return (
     <div>
       <GmTooltip content={props.label} placement="right" openDelay={600}>
-        <a href={props.path} class={`transition-all duration-200 group items-center justify-center flex rounded-50% ${active('bg-hl rounded-lg', 'bg-third hover:bg-light hover:rounded-lg')}  lh-none w-48px h-48px`}>
+        <a href={props.path} class={`transition-all duration-200 group items-center justify-center flex rounded-50% ${active('bg-hl rounded-lg', 'bg-third hover:bg-hl hover:rounded-lg')}  lh-none w-48px h-48px`}>
           <div class={`flex ${props.icon} w-[25px] h-[25px] ${active('text-white', 'c-hl')} group-hover:text-white`} />
         </a>
       </GmTooltip>
@@ -22,7 +22,7 @@ function NavItem(props: { path: string, icon: string, label: string }) {
 }
 
 export default function Nav() {
-  const [state, actions] = useAppState()
+  const [state, actions] = useThemeState()
   return (
     <nav class="bg-main fixed left-0 h-full w-60px b-r b-[var(--gmc-border)] z-1 flex flex-col justify-between">
       <div class="flex flex-col items-center py-3 text-gray-200 gap-2">

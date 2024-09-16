@@ -2,24 +2,28 @@
 import { defineConfig, presetIcons, presetUno } from 'unocss'
 
 const shortcuts = {
-  'c-text': 'text-[var(--gmc-text)]',
-  'c-text-2': 'text-[var(--gmc-text-2)]',
-  'c-heavy': 'text-[var(--gmc-heavy)]',
-  'bg-body': 'bg-[var(--gmc-body)]',
-  'bg-main': 'bg-[var(--gmc-main)]',
-  'bg-second': 'bg-[var(--gmc-second)]',
-  'bg-third': 'bg-[var(--gmc-third)]',
-  'bg-hover': 'bg-[var(--gmc-hover)]',
-  'bg-hl': 'bg-[var(--gmc-hl)]',
-  'bg-light': 'bg-[var(--gmc-light)]',
-  'c-hl': 'text-[var(--gmc-hl)]',
+  'flex-center': 'flex items-center justify-center',
 }
 
 export default defineConfig({
   safelist: Object.keys(shortcuts),
   shortcuts,
   theme: {
-
+    colors: {
+      'main': 'var(--gmc-main)',
+      'main-b': 'var(--gmc-main-b)',
+      'second': 'var(--gmc-second)',
+      'third': 'var(--gmc-third)',
+      'body': 'var(--gmc-body)',
+      'border': 'var(--gmc-border)',
+      'hl': 'var(--gmc-hl)',
+      'hover': 'var(--gmc-hover)',
+      'heavy': 'var(--gmc-heavy)',
+      'text': 'var(--gmc-text)',
+      'text-2': 'var(--gmc-text-2)',
+      'quote': 'var(--gmc-quote)',
+      'bg': 'var(--gmc-bg)',
+    },
   },
   rules: [
     // 添加一个规则来重置 input 元素的样式
@@ -33,7 +37,7 @@ export default defineConfig({
   ],
   variants: [
     // 通用变体处理器
-    (matcher) => {
+    (matcher: any) => {
       // eslint-disable-next-line regexp/no-super-linear-backtracking
       const regex = /^data-([\w-]+)=?(\w*):/
       const match = matcher.match(regex)

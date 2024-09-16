@@ -1,29 +1,11 @@
-import { createGlobalState, watch } from 'solid-uses'
-import { setDarkLightMetaThemeColor, setDynamicTheme } from '~/style/theme'
+import { defineGlobalStore } from 'solid-uses'
 
-const document = isServer ? null : window.document
-const darkMode = document?.body.classList.contains('dark')
-const hue = document?.body.dataset.hue
-
-const appState = createGlobalState(() => ({
-  isDark: darkMode || false,
-  hue: Number(hue) || 0,
-}), {
-  setIsDark(v: boolean) {
-    document?.body.classList.toggle('dark', v)
-    this.actions.setState('isDark', v)
-    setDarkLightMetaThemeColor()
-  },
-
-  setHue(v: number) {
-    if (document) {
-      document.body.dataset.hue = String(v)
-    }
-
-    this.actions.setState('hue', v)
-    setDynamicTheme()
-  },
-
+const appState = defineGlobalStore('app-state', {
+  state: () => ({
+    isNavOpen: true,
+    title: '航大势能 MES',
+  }),
+  persist: 'localStorage',
 })
 
 function useAppState() {

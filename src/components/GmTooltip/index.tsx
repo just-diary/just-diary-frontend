@@ -1,6 +1,5 @@
-import type { JSX } from 'solid-js'
 import { FloatingUiPort } from 'jige-ui'
-import useAppState from '~/states/app-state'
+import type { JSX } from 'solid-js'
 
 import './tooltip.scss'
 
@@ -14,9 +13,8 @@ export default function GmTooltip(props: {
   return (
     <FloatingUiPort placement={props.placement} trigger="hover" openDelay={props.openDelay} closeDelay={props.closeDelay}>
       <FloatingUiPort.Trigger>{props.children}</FloatingUiPort.Trigger>
-      <FloatingUiPort.Content zindex={1} class="rounded drop-shadow p-2 bg-white dark:bg-[#111] dark:text-white ani-tips">
+      <FloatingUiPort.Content zindex={2020} class="text-xs rounded shadow b b-border p-1 px-2 bg-hl text-white  anitip">
         <span>{props.content}</span>
-        <FloatingUiPort.Arrow class="bg-white dark:bg-[#111] dark:text-white" size={8} />
       </FloatingUiPort.Content>
     </FloatingUiPort>
   )

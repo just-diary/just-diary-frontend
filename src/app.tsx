@@ -2,10 +2,12 @@ import { Router, useBeforeLeave, useIsRouting } from '@solidjs/router'
 import { FileRoutes } from '@solidjs/start/router'
 import { Suspense } from 'solid-js'
 
-import GmScroll from './components/GmScroll'
-import LoadingPage from './parts/LoadingPage'
+import { watch } from 'solid-uses'
 import Nav from '~/parts/Nav'
+import GmScroll from './components/GmScroll'
 
+import LoadingPage from './parts/LoadingPage'
+import { useThemeState } from './states/theme-state'
 import 'virtual:uno.css'
 import '~/style/app.css'
 
@@ -49,6 +51,16 @@ function RouteWrapper(props: {
 }
 
 export default function App() {
+  const [state, actions] = useThemeState()
+
+  watch(() => state.hue, () => {
+    actions.setTheme()
+  })
+
+  watch(() => state.isDark, () => {
+    actions.setDark()
+  })
+
   const NewFileRoutes = () => FileRoutes().map((route) => {
     return {
       ...route,
@@ -66,7 +78,7 @@ export default function App() {
       root={props => (
         <>
           <Nav />
-          <GmScroll height="100vh" autoHide>
+          <GmScroll height="100vh">
             <Suspense fallback={<LoadingPage />}>{props.children}</Suspense>
           </GmScroll>
         </>
